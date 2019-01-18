@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Archery Competition</string>
+    <string name="app_participants">Participants</string>
+    <string name="app_participants_edit">Add or edit a Participant</string>
+    <string name="activity_main_button_participants">Participants</string>
+    <string name="activity_main_button_stage">Stage</string>
+
+    <string name="activity_participants_text">Please start adding participants to the list</string>
+    <string name="activity_p_editor_name">Name</string>
+    <string name="activity_p_editor_last_name">Last Name</string>
+    <string name="activity_p_editor_dob">Date of Birth</string>
+    <string name="activity_p_editor_gender">Gender</string>
+    <string name="activity_p_editor_country">Country</string>
+    <string name="activity_p_editor_city">City</string>
+    <string name="activity_p_editor_club">Club</string>
+    <string name="activity_p_editor_bow_class">Bow Class</string>
+    <string name="list_participants_last_name">Last Name</string>
+    <string name="list_participants_name">Name</string>
+    <string name="list_participants_date_of_birth">Date of Birth:</string>
+    <string name="list_participants_date">23.08.1986</string>
+    <string name="list_participants_gender_string">Gender:</string>
+    <string name="list_participants_gender">male</string>
+    <string name="list_participants_country">Germany</string>
+    <string name="list_participants_city">Berlin</string>
+    <string name="list_participants_club">No</string>
+    <string name="list_participants_bow_class">Olimpic</string>
+
+    <string name="gender_unknown">Please, choose gender</string>
+    <string name="gender_male">Male</string>
+    <string name="gender_female">Female</string>
+    <string name="menu_participants_editor_save">Save</string>
+    <string name="menu_participants_editor_delete">Delete</string>
+
+    <string-array name="array_gender_options">
+        <item>@string/gender_female</item>
+        <item>@string/gender_male</item>
+        <item>@string/gender_unknown</item>
+    </string-array>
+
+</resources>

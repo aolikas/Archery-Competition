@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="activity_main_background">#EFEBE9</color>
+    <color name="activity_editor_background">#BCAAA4</color>
+    <color name="activity_editor_input_background">#EFEBE9</color>
+</resources>
