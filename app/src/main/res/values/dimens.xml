@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_participants_fab_margin">20dp</dimen>
+    <dimen name="activity_p_editor_layout_padding">10dp</dimen>
+    <dimen name="activity_p_editor_margin_bottom">5dp</dimen>
+    <dimen name="list_participants_layout_padding">10dp</dimen>
+</resources>
