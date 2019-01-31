@@ -9,6 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".BowClass$BowClassActivity"
+            android:label="@string/app_bow_class"
+            android:parentActivityName=".MainActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,10 +27,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".Participants$ParticipantEditorActivity"
+        <activity
+            android:name=".Participants$ParticipantEditorActivity"
             android:label="@string/app_participants_edit"
             android:parentActivityName=".Participants.ParticipantsActivity">
-
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Participants.ParticipantsActivity" />

@@ -20,18 +20,22 @@ import android.widget.Toast;
 import com.example.buran.archery_competition.R;
 
 import java.util.Calendar;
+import java.util.List;
 
 import com.example.buran.archery_competition.db.ParticipantContract.ParticipantEntry;
-import com.example.buran.archery_competition.db.ParticipantsDbHelper;
+import com.example.buran.archery_competition.db.CompetitionDbHelper;
+import com.example.buran.archery_competition.BowClass.BowClassActivity;
 
 public class ParticipantEditorActivity extends AppCompatActivity {
 
     private static final String TAG = ParticipantEditorActivity.class.getSimpleName();
 
     private EditText pName, pLastName, pDOB, pCountry,
-            pCity, pClub, pBowClass;
+            pCity, pClub;
 
-    private Spinner pGenderSpinner;
+    private Spinner pClassSpinner;
+    private Spinner bClassSpinner;
+
 
     private Calendar calendar;
     private DatePickerDialog datePickerDialog;
@@ -46,6 +50,7 @@ public class ParticipantEditorActivity extends AppCompatActivity {
         initializeView();
         setupDatePicker();
         setupSpinner();
+        loadSpinnerData();
     }
 
     // Find all relevant views that we will need to read user input from
@@ -53,11 +58,12 @@ public class ParticipantEditorActivity extends AppCompatActivity {
         pName = (EditText) findViewById(R.id.name_edit_text);
         pLastName = (EditText) findViewById(R.id.last_name_edit_text);
         pDOB = (EditText) findViewById(R.id.dob_edit_text);
-        pGenderSpinner = (Spinner) findViewById(R.id.gender_spinner);
+        pClassSpinner = (Spinner) findViewById(R.id.class_spinner);
         pCountry = (EditText) findViewById(R.id.country_edit_text);
         pCity = (EditText) findViewById(R.id.city_edit_text);
         pClub = (EditText) findViewById(R.id.club_edit_text);
-        pBowClass = (EditText) findViewById(R.id.bow_class_edit_text);
+
+        bClassSpinner = (Spinner) findViewById(R.id.bow_class_spinner);
     }
 
     private void setupDatePicker() {
@@ -83,16 +89,43 @@ public class ParticipantEditorActivity extends AppCompatActivity {
         });
     }
 
+    private void loadSpinnerData() {
+        CompetitionDbHelper dbHelper = new CompetitionDbHelper(getApplicationContext());
+
+        List<String> labels = dbHelper.getAllBowClasses();
+
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, labels);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        bClassSpinner.setAdapter(dataAdapter);
+        bClassSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String label = parent.getItemAtPosition(position).toString();
+
+                Toast.makeText(parent.getContext(), "You selected: " + label, Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+    }
+
+
     private void setupSpinner() {
 
         ArrayAdapter genderSpinnerAdapter = ArrayAdapter.createFromResource(this,
                 R.array.array_gender_options, android.R.layout.simple_spinner_item);
         genderSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
 
-        pGenderSpinner.setAdapter(genderSpinnerAdapter);
-        pGenderSpinner.setSelection(2);
+        pClassSpinner.setAdapter(genderSpinnerAdapter);
+        pClassSpinner.setSelection(2);
 
-        pGenderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        pClassSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selection = (String) parent.getItemAtPosition(position);
@@ -160,20 +193,18 @@ public class ParticipantEditorActivity extends AppCompatActivity {
         String country = pCountry.getText().toString().trim();
         String city = pCity.getText().toString().trim();
         String club = pClub.getText().toString().trim();
-        String bowClass = pBowClass.getText().toString().trim();
 
 
         //Check if is new or if an update
         if (TextUtils.isEmpty(name) || TextUtils.isEmpty(lastName)
                 || TextUtils.isEmpty(dob) || TextUtils.isEmpty(country)
-                || TextUtils.isEmpty(city) || TextUtils.isEmpty(club)
-                || TextUtils.isEmpty(bowClass)) {
+                || TextUtils.isEmpty(city) || TextUtils.isEmpty(club)) {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_LONG).show();
             // No change has been made so we can return
             return;
         }
 
-        ParticipantsDbHelper mDbHelper = new ParticipantsDbHelper(this);
+        CompetitionDbHelper mDbHelper = new CompetitionDbHelper(this);
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
         //we set values for insert update
@@ -181,11 +212,10 @@ public class ParticipantEditorActivity extends AppCompatActivity {
         values.put(ParticipantEntry.COLUMN_NAME, name);
         values.put(ParticipantEntry.COLUMN_LAST_NAME, lastName);
         values.put(ParticipantEntry.COLUMN_DOB, dob);
-        values.put(ParticipantEntry.COLUMN_GENDER, pGender);
+        values.put(ParticipantEntry.COLUMN_CLASS, pGender);
         values.put(ParticipantEntry.COLUMN_COUNTRY, country);
         values.put(ParticipantEntry.COLUMN_CITY, city);
         values.put(ParticipantEntry.COLUMN_CLUB, club);
-        values.put(ParticipantEntry.COLUMN_CLASS, bowClass);
 
         long newRowId = db.insert(ParticipantEntry.TABLE_NAME, null, values);
         if (newRowId == -1) {
@@ -195,4 +225,6 @@ public class ParticipantEditorActivity extends AppCompatActivity {
         }
 
     }
+
+
 }

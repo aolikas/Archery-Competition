@@ -23,6 +23,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/activity_main_button_stage" />
+
+        <Button
+            android:id="@+id/btn_bow_class"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_main_button_bow_class" />
     </LinearLayout>
 
 </RelativeLayout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_bow_class_background"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_bow_class_layout_padding"
+    tools:context=".BowClass.BowClassActivity">
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/bow_class_input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_bow_class_margin_bottom"
+        android:background="@color/activity_editor_input_background">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/bow_class_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/activity_bow_class_input"
+            android:inputType="text" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/add_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_bow_class_margin_bottom"
+        android:background="@color/activity_bow_class_button"
+        android:text="Add" />
+
+    <TextView
+        android:id="@+id/bow_class_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

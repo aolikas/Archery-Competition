@@ -52,7 +52,7 @@ public class ParticipantContract {
          * Gender of a participant
          * Integer
          */
-        public static final String COLUMN_GENDER = "gender";
+        public static final String COLUMN_CLASS = "gender";
 
         /**
          * Country of a participant
@@ -72,11 +72,6 @@ public class ParticipantContract {
          */
         public static final String COLUMN_CLUB = "club";
 
-        /**
-         * Class of a participant
-         * TEXT
-         */
-        public static final String COLUMN_CLASS = "class";
 
 
         public static final int GENDER_FEMALE = 0;
@@ -91,10 +86,9 @@ public class ParticipantContract {
                 COLUMN_NAME + " TEXT NOT NULL, " +
                 COLUMN_LAST_NAME + " TEXT NOT NULL, " +
                 COLUMN_DOB + " TEXT NOT NULL, " +
-                COLUMN_GENDER + " INTEGER NOT NULL DEFAULT 3, " +
+                COLUMN_CLASS + " INTEGER NOT NULL DEFAULT 3, " +
                 COLUMN_COUNTRY + " TEXT NOT NULL, " +
                 COLUMN_CITY + " TEXT NOT NULL, " +
-                COLUMN_CLUB + " TEXT NOT NULL, " +
-                COLUMN_CLASS + " TEXT NOT NULL);";
+                COLUMN_CLUB + " TEXT NOT NULL);";
     }
 }

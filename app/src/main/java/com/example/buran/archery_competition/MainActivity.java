@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.buran.archery_competition.BowClass.BowClassActivity;
 import com.example.buran.archery_competition.Participants.ParticipantsActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button btnParticipants;
+    private Button btnBowClass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,12 +20,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         btnParticipants = (Button) findViewById(R.id.btn_participant);
-        btnParticipants.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ParticipantsActivity.class);
-                startActivity(intent);
-            }
-        });
+        btnParticipants.setOnClickListener(this);
+
+        btnBowClass = (Button) findViewById(R.id.btn_bow_class);
+        btnBowClass.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_participant:
+                Intent intentParticipants = new Intent(MainActivity.this, ParticipantsActivity.class);
+                startActivity(intentParticipants);
+                break;
+            case R.id.btn_bow_class:
+                Intent intentBowClass = new Intent(MainActivity.this, BowClassActivity.class);
+                startActivity(intentBowClass);
+
+        }
+
     }
 }

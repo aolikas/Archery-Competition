@@ -10,14 +10,14 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.buran.archery_competition.R;
+import com.example.buran.archery_competition.db.CompetitionDbHelper;
 import com.example.buran.archery_competition.db.ParticipantContract.ParticipantEntry;
-import com.example.buran.archery_competition.db.ParticipantsDbHelper;
 
 public class ParticipantsActivity extends AppCompatActivity {
 
     private FloatingActionButton fab;
 
-    private ParticipantsDbHelper dbHelper;
+    private CompetitionDbHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,7 @@ public class ParticipantsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_participants);
         initializeFab();
 
-        dbHelper = new ParticipantsDbHelper(this);
+        dbHelper = new CompetitionDbHelper(this);
     }
 
     private void initializeFab(){
@@ -55,11 +55,10 @@ public class ParticipantsActivity extends AppCompatActivity {
                 ParticipantEntry.COLUMN_NAME,
                 ParticipantEntry.COLUMN_LAST_NAME,
                 ParticipantEntry.COLUMN_DOB,
-                ParticipantEntry.COLUMN_GENDER,
+                ParticipantEntry.COLUMN_CLASS,
                 ParticipantEntry.COLUMN_COUNTRY,
                 ParticipantEntry.COLUMN_CITY,
-                ParticipantEntry.COLUMN_CLUB,
-                ParticipantEntry.COLUMN_CLASS};
+                ParticipantEntry.COLUMN_CLUB};
 
 
         Cursor cursor = db.query(
@@ -80,22 +79,21 @@ public class ParticipantsActivity extends AppCompatActivity {
                     ParticipantEntry.COLUMN_NAME + " - " +
                     ParticipantEntry.COLUMN_LAST_NAME + " - " +
                     ParticipantEntry.COLUMN_DOB + " - " +
-                    ParticipantEntry.COLUMN_GENDER + " - " +
+                    ParticipantEntry.COLUMN_CLASS + " - " +
                     ParticipantEntry.COLUMN_COUNTRY + " - " +
                     ParticipantEntry.COLUMN_CITY + " - " +
-                    ParticipantEntry.COLUMN_CLUB + " - " +
-                    ParticipantEntry.COLUMN_CLASS + "\n");
+                    ParticipantEntry.COLUMN_CLUB + " - " + "\n");
 
             //to know index pf every column
             int idColumnIndex = cursor.getColumnIndex(ParticipantEntry._ID);
             int nameColumnIndex = cursor.getColumnIndex(ParticipantEntry.COLUMN_NAME);
             int lastNameColumnIndex = cursor.getColumnIndex(ParticipantEntry.COLUMN_LAST_NAME);
             int dobColumnIndex = cursor.getColumnIndex(ParticipantEntry.COLUMN_DOB);
-            int genderColumnIndex = cursor.getColumnIndex(ParticipantEntry.COLUMN_GENDER);
+            int genderColumnIndex = cursor.getColumnIndex(ParticipantEntry.COLUMN_CLASS);
             int countryColumnIndex = cursor.getColumnIndex(ParticipantEntry.COLUMN_COUNTRY);
             int cityColumnIndex = cursor.getColumnIndex(ParticipantEntry.COLUMN_CITY);
             int clubColumnIndex = cursor.getColumnIndex(ParticipantEntry.COLUMN_CLUB);
-            int classColumnIndex = cursor.getColumnIndex(ParticipantEntry.COLUMN_CLASS);
+
 
             //go throw
             while (cursor.moveToNext()) {
@@ -107,7 +105,6 @@ public class ParticipantsActivity extends AppCompatActivity {
                 String currentCountry = cursor.getString(countryColumnIndex);
                 String currentCity = cursor.getString(cityColumnIndex);
                 String currentClub = cursor.getString(clubColumnIndex);
-                String currentClass = cursor.getString(classColumnIndex);
 
 
                 displayTextView.append(("\n" + currentId + " - " +
@@ -117,8 +114,7 @@ public class ParticipantsActivity extends AppCompatActivity {
                         currentGender + " - " +
                         currentCountry + " - " +
                         currentCity + " - " +
-                        currentClub + " - " +
-                        currentClass));
+                        currentClub));
             }
         } finally {
             cursor.close();

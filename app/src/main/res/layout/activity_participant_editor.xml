@@ -73,10 +73,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/activity_p_editor_gender" />
+                android:text="@string/activity_p_editor_class" />
 
             <Spinner
-                android:id="@+id/gender_spinner"
+                android:id="@+id/class_spinner"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"></Spinner>
@@ -132,22 +132,27 @@
 
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <LinearLayout
             android:id="@+id/bow_class_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/club_input_layout"
+            android:layout_below="@+id/club_input_layout"
             android:layout_marginBottom="@dimen/activity_p_editor_margin_bottom"
-            android:background="@color/activity_editor_input_background">
+            android:background="@color/activity_editor_input_background"
+            android:orientation="horizontal">
 
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/bow_class_edit_text"
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/activity_p_editor_bow_class"
-                android:inputType="text" />
+                android:text="@string/activity_p_editor_bow_class" />
 
-        </android.support.design.widget.TextInputLayout>
+            <Spinner
+                android:id="@+id/bow_class_spinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"></Spinner>
+        </LinearLayout>
+
 
     </RelativeLayout>
 
